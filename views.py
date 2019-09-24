@@ -20,14 +20,21 @@ def hello(world: dict) -> str:
     <a href="goto/entrance">Retreat.</a>"""
 
 
-ENCOUNTER_MONSTER = """You are in {}. You found a monster!<br>
-    <img src="http://placecorgi.com/260/180" /><br>
-    What is its name?
-    <form action="/save/name/">
-        <input type="text" name="player"><br>
-        <input type="submit" value="Submit"><br>
-    </form>
-    """
+ENCOUNTER_MONSTER = """
+<!-- Curly braces let us inject values into the string -->
+You are in {}. You found a monster!<br>
+
+<!-- Image taken from site that generates random Corgi pictures-->
+<img src="http://placecorgi.com/260/180" /><br>
+    
+What is its name?
+
+<!-- Form allows you to have more text entry -->    
+<form action="/save/name/">
+    <input type="text" name="player"><br>
+    <input type="submit" value="Submit"><br>
+</form>
+"""
 
 
 @simple_route('/goto/<where>/')

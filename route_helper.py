@@ -7,8 +7,10 @@ would like to be able to reset their game.
 """
 
 import json
-from flask import request, session, redirect
 from functools import wraps
+
+from flask import request, session, redirect
+
 from app import app
 
 INITIAL_WORLD = {}
