@@ -1,3 +1,5 @@
+from flask import render_template
+
 from route_helper import simple_route
 
 GAME_HEADER = """
@@ -14,26 +16,11 @@ def hello(world: dict) -> str:
     :param world: The current world
     :return: The HTML to show the player
     """
-    return GAME_HEADER+"""You are in the Lair of the Corgis.<br>
-    
-    <a href="goto/lair">Go further into the lair.</a><br>
-    <a href="goto/entrance">Retreat.</a>"""
+    return render_template('index.html')
 
 
 ENCOUNTER_MONSTER = """
-<!-- Curly braces let us inject values into the string -->
-You are in {}. You found a monster!<br>
 
-<!-- Image taken from site that generates random Corgi pictures-->
-<img src="http://placecorgi.com/260/180" /><br>
-    
-What is its name?
-
-<!-- Form allows you to have more text entry -->    
-<form action="/save/name/">
-    <input type="text" name="player"><br>
-    <input type="submit" value="Submit"><br>
-</form>
 """
 
 
@@ -48,7 +35,7 @@ def open_door(world: dict, where: str) -> str:
     :return: The HTML to show the player
     """
     world['location'] = where
-    return GAME_HEADER+ENCOUNTER_MONSTER.format(where)
+    return render_template('encounter_monster.html', monster=where)
 
 
 @simple_route("/save/name/")
