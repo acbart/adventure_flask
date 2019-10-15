@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, session
 
 from route_helper import simple_route
 
@@ -16,7 +16,7 @@ def hello(world: dict) -> str:
     :param world: The current world
     :return: The HTML to show the player
     """
-    return render_template('index.html')
+    return render_template('index.html', world=world)
 
 
 ENCOUNTER_MONSTER = """
@@ -25,7 +25,7 @@ ENCOUNTER_MONSTER = """
 
 
 @simple_route('/goto/<where>/')
-def open_door(world: dict, where: str) -> str:
+def move_to_place(world: dict, where: str) -> str:
     """
     Update the player location and encounter a monster, prompting the player
     to give them a name.
@@ -35,11 +35,15 @@ def open_door(world: dict, where: str) -> str:
     :return: The HTML to show the player
     """
     world['location'] = where
-    return render_template('encounter_monster.html', monster=where)
+
+    if not world['corgis']:
+        world['corgis'].append({"Name": "???", "Mood": "Unknown"})
+
+    return render_template('encounter_monster.html', world=world)
 
 
 @simple_route("/save/name/")
-def save_name(world: dict, monsters_name: str) -> str:
+def save_name(world: dict, monster_name: str, monster_mood: str) -> str:
     """
     Update the name of the monster.
 
@@ -47,9 +51,7 @@ def save_name(world: dict, monsters_name: str) -> str:
     :param monsters_name:
     :return:
     """
-    world['name'] = monsters_name
+    world['corgis'][0]['Name'] = monster_name
+    world['corgis'][0]['Mood'] = monster_mood
 
-    return GAME_HEADER+"""You are in {where}, and you are nearby {monster_name}
-    <br><br>
-    <a href='/'>Return to the start</a>
-    """.format(where=world['location'], monster_name=world['name'])
+    return render_template('name_monster.html', world=world)

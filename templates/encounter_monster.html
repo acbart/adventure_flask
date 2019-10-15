@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "parent_layout.html" %}
 
-
-<h1>Welcome to adventure quest!</h1>
-<p>At any time you can <a href='/reset/'>reset</a> your game.</p>
+{% block body %}
 
 <!-- Curly braces let us inject values into the string -->
-You are in {{ monster }}. You found a monster!<br>
+You are in {{ world['location'] }}. You found a monster!<br>
 
 <!-- Image taken from site that generates random Corgi pictures-->
 <img src="http://placecorgi.com/260/180" /><br>
@@ -20,9 +12,12 @@ What is its name?
 
 <!-- Form allows you to have more text entry -->
 <form action="/save/name/">
-    <input type="text" name="player"><br>
+    Name: <input type="text" name="monster_name"><br>
+    Mood: <select name="monster_mood">
+        <option>Hungry</option>
+        <option>Sleepy</option>
+    </select><br>
     <input type="submit" value="Submit"><br>
 </form>
 
-</body>
-</html>
+{% endblock %}
