@@ -1,11 +1,6 @@
-from flask import render_template, session
+from flask import render_template, session, request
 
 from route_helper import simple_route
-
-GAME_HEADER = """
-<h1>Welcome to adventure quest!</h1>
-<p>At any time you can <a href='/reset/'>reset</a> your game.</p>
-"""
 
 
 @simple_route('/')
@@ -17,11 +12,6 @@ def hello(world: dict) -> str:
     :return: The HTML to show the player
     """
     return render_template('index.html', world=world)
-
-
-ENCOUNTER_MONSTER = """
-
-"""
 
 
 @simple_route('/goto/<where>/')
@@ -42,8 +32,8 @@ def move_to_place(world: dict, where: str) -> str:
     return render_template('encounter_monster.html', world=world)
 
 
-@simple_route("/save/name/")
-def save_name(world: dict, monster_name: str, monster_mood: str) -> str:
+@simple_route("/save/")
+def save_name(world: dict, *args) -> str:
     """
     Update the name of the monster.
 
@@ -51,7 +41,15 @@ def save_name(world: dict, monster_name: str, monster_mood: str) -> str:
     :param monsters_name:
     :return:
     """
-    world['corgis'][0]['Name'] = monster_name
-    world['corgis'][0]['Mood'] = monster_mood
+    #for key, value in request.values.items():
+    #    world['corgis'][0][key] = value
+    world['met_corgi?'] = True
+    world['corgis'][0]['Name'] = request.values.get('monster_name')
+    world['corgis'][0]['Mood'] = request.values.get('monster_mood')
+    try:
+        world['corgis'][0]['Age'] = int(request.values.get('age'))
+    except ValueError:
+        world['corgis'][0]['Age'] = None
+    world['corgis'][0]['Fluffy'] = 'true' == request.values.get('is_fluffy', False)
 
     return render_template('name_monster.html', world=world)

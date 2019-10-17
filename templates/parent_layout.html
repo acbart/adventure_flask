@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
 
     <link rel="stylesheet" href="/static/page_style.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    {% block header %}
+    {% endblock %}
+
 </head>
 <body>
 
@@ -13,11 +19,37 @@
 <p>At any time you can <a href='/reset/'>reset</a> your game.</p>
 <p>Currently, you have the following corgis: {{ world['corgis'] }}</p>
 
+<p>
+    {% if world['met_corgi?'] %}
+        You met hte corgi!
+    {% else %}
+        You hve not yet met hte corgi
+    {% endif %}
+</p>
+{% if world['corgis'] %}
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <th>Name</th>
+        <th>Age</th>
+        <th>Mood</th>
+        <th>Is fluffy?</th>
+    </thead>
+
+    {% for corgi in world['corgis'] %}
+        <tr>
+            <td>{{ corgi['Name'] }}</td>
+            <td>{{ corgi['Age'] }}</td>
+            <td>{{ corgi['Mood'] }}</td>
+            <td>{{ corgi['Fluffy'] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
 
 
 
 {% block body %}
-
 {% endblock %}
 
 

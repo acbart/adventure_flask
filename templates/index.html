@@ -1,16 +1,21 @@
 {% extends "parent_layout.html" %}
 
+
+{% block header %}
+<title>Welcome to the Corgi Advenutre</title>
+{% endblock %}
+
 {% block body %}
 
-Welcome to my game.<br>
+    Welcome to my game.<br>
 
     <p>You are in the lair of the Corgis!</p>
 
-<img src="/static/cute-ada.jpg" style="width: 200px"/>
+    <img src="/static/cute-ada.jpg" style="width: 200px"/>
 
     <p>
-<a href="goto/lair">Go further into the lair.</a><br>
-<a href="goto/entrance">Retreat.</a>
+        <a href="goto/lair">Go further into the lair.</a><br>
+        <a href="goto/entrance">Retreat.</a>
     </p>
 
 
