@@ -26,23 +26,19 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm">
-            At any time you can <a href='/reset/'>reset</a> your game.
-        </div>
-    </div>
+    {% block body %}
+    {% endblock %}
 
     <div class="row">
         <div class="col-sm">
-            <p>Currently, you have the following corgis: {{ world['corgis'] }}</p>
-
             {% if world['met_corgi?'] %}
             <p>You met the corgi!</p>
             {% else %}
-            <p>You have not yet met the corgi</p>
+            <p>Current Status: You have not yet met the corgi.</p>
             {% endif %}
 
             {% if world['corgis'] %}
+            <p>Currently, you have the following corgis: {{ world['corgis'] }}</p>
             <table class="table table-hover">
                 <thead class="thead-dark">
                     <th>Name</th>
@@ -64,8 +60,16 @@
         </div>
     </div>
 
-    {% block body %}
+    {% block controls %}
     {% endblock %}
+
+    <hr>
+    <div class="row">
+        <div class="col-sm">
+            <a class="btn btn-outline-danger btn-sm" href='/reset/'>Reset Game</a>
+            <small>This will lose all progress!</small>
+        </div>
+    </div>
 
 </div>
 
