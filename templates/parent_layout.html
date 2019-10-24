@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/static/page_style.css">
-
+    <!-- Bootstrap CSS and JS file -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- My own custom CSS file -->
+    <link rel="stylesheet" href="/static/page_style.css">
 
     {% block header %}
     {% endblock %}
@@ -14,44 +17,57 @@
 </head>
 <body>
 
+<!-- Put the whole body into a container -->
+<div class="container-fluid">
 
-<h1>Welcome to adventure quest!</h1>
-<p>At any time you can <a href='/reset/'>reset</a> your game.</p>
-<p>Currently, you have the following corgis: {{ world['corgis'] }}</p>
+    <div class="row">
+        <div class="col-sm">
+            <h1>The Corgi Adventure Game!</h1>
+        </div>
+    </div>
 
-<p>
-    {% if world['met_corgi?'] %}
-        You met hte corgi!
-    {% else %}
-        You hve not yet met hte corgi
-    {% endif %}
-</p>
-{% if world['corgis'] %}
-<table class="table table-hover">
-    <thead class="thead-dark">
-        <th>Name</th>
-        <th>Age</th>
-        <th>Mood</th>
-        <th>Is fluffy?</th>
-    </thead>
+    <div class="row">
+        <div class="col-sm">
+            At any time you can <a href='/reset/'>reset</a> your game.
+        </div>
+    </div>
 
-    {% for corgi in world['corgis'] %}
-        <tr>
-            <td>{{ corgi['Name'] }}</td>
-            <td>{{ corgi['Age'] }}</td>
-            <td>{{ corgi['Mood'] }}</td>
-            <td>{{ corgi['Fluffy'] }}</td>
-        </tr>
-    {% endfor %}
-</table>
-{% endif %}
+    <div class="row">
+        <div class="col-sm">
+            <p>Currently, you have the following corgis: {{ world['corgis'] }}</p>
 
+            {% if world['met_corgi?'] %}
+            <p>You met the corgi!</p>
+            {% else %}
+            <p>You have not yet met the corgi</p>
+            {% endif %}
 
+            {% if world['corgis'] %}
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Mood</th>
+                    <th>Is fluffy?</th>
+                </thead>
 
+                {% for corgi in world['corgis'] %}
+                    <tr>
+                        <td>{{ corgi['Name'] }}</td>
+                        <td>{{ corgi['Age'] }}</td>
+                        <td>{{ corgi['Mood'] }}</td>
+                        <td>{{ corgi['Fluffy'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        </div>
+    </div>
 
-{% block body %}
-{% endblock %}
+    {% block body %}
+    {% endblock %}
 
+</div>
 
 </body>
 </html>
