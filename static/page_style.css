@@ -1,4 +1,14 @@
 
 .header-table {
-    border: 1px solid black; background-color: #ddd; padding: 4px
+    border: 1px solid black;
+    background-color: #ddd;
+    padding: 4px
+}
+
+#main-container {
+    width: 900px;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #faebcc;
+    background-color: #fcf8e3;
 }

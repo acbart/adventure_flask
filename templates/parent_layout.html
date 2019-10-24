@@ -18,7 +18,7 @@
 <body>
 
 <!-- Put the whole body into a container -->
-<div class="container-fluid">
+<div class="container" id="main-container">
 
     <div class="row">
         <div class="col-sm">
@@ -33,7 +33,7 @@
         <div class="col-sm">
             {% if world['corgis'] %}
             <p>Currently, you have the following corgis:</p>
-            <table class="table table-hover" style="width:25%">
+            <table class="table table-hover table-bordered table-sm header-table">
                 <thead class="thead-dark">
                     <th>Name</th>
                     <th>Age</th>
@@ -51,6 +51,7 @@
                 {% endfor %}
             </table>
         {% endif %}
+        <hr>
         </div>
     </div>
 

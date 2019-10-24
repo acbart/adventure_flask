@@ -7,17 +7,27 @@
 
 {% block body %}
 
-    <p>You are in the lair of the Corgis!</p>
-    <p>Up ahead, you can make out a fearsome beast.</p>
+    <div class="row">
 
-    <img src="/static/cute-ada.jpg" style="width: 200px" class="rounded border border-dark"/>
+        <div class="col-sm-6">
+            <p>You are in the lair of the Corgis!</p>
+            <p>Up ahead, you can make out a fearsome beast.</p>
+            <p>If you go further into the lair, then perhaps you could capture it?</p>
+            <p>Or perhaps you could sneak around the back route?</p>
+        </div>
+
+        <div class="col-sm-6">
+            <img src="/static/cute-ada.jpg" style="width: 200px" class="rounded border border-dark"/>
+        </div>
+
+    </div>
 
 {% endblock %}
 {% block controls %}
 
     <div class="list-group">
         <a href="goto/lair" class="list-group-item list-group-item-action">Go further into the lair.</a><br>
-        <a href="goto/entrance" class="list-group-item list-group-item-action">Retreat.</a>
+        <a href="goto/cave" class="list-group-item list-group-item-action">Sneak around to back route.</a>
     </div>
 
 

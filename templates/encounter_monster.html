@@ -10,11 +10,13 @@
     <p>You are in the {{ world['location'] }}. You found a monster!</p>
 
     <!-- Image taken from site that generates random Corgi pictures-->
-    <p><img src="http://placecorgi.com/260/180" class="rounded border border-dark" /></p>
+    <p><img src="http://placecorgi.com/500/180" class="rounded border border-dark mx-auto d-block" /></p>
 
 {% endblock %}
 
 {% block controls %}
+
+    <p>You can catch this new corgi!</p>
 
     <form action="/save/">
 
