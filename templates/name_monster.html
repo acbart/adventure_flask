@@ -6,6 +6,17 @@
 
 {% block body %}
 
-    You have renamed the corgi.
+    <p>You have renamed the corgi.</p>
+
+{% endblock %}
+
+{%  block controls %}
+
+    Would you like to check to see if there are more corgis in this dungeon?
+
+    <div class="list-group">
+        <a href="/goto/lair" class="list-group-item list-group-item-action">Yes.</a><br>
+        <a href="/goto/entrance" class="list-group-item list-group-item-action">Also yes.</a>
+    </div>
 
 {% endblock %}

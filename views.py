@@ -26,7 +26,9 @@ def move_to_place(world: dict, where: str) -> str:
     """
     world['location'] = where
 
-    if not world['corgis']:
+    # Add a new, unknown corgi if we have no unknown corgis
+    corgi_names = [corgi['Name'] for corgi in world['corgis']]
+    if '???' not in corgi_names:
         world['corgis'].append({"Name": "???", "Mood": "Unknown"})
 
     return render_template('encounter_monster.html', world=world)
@@ -41,11 +43,10 @@ def save_name(world: dict, *args) -> str:
     :param monsters_name:
     :return:
     """
-    #for key, value in request.values.items():
-    #    world['corgis'][0][key] = value
-    world['met_corgi?'] = True
-    world['corgis'][0]['Name'] = request.values.get('monster_name')
-    world['corgis'][0]['Mood'] = request.values.get('monster_mood')
+
+    # Rename the latest corgi
+    world['corgis'][-1]['Name'] = request.values.get('monster_name')
+    world['corgis'][-1]['Mood'] = request.values.get('monster_mood')
     try:
         world['corgis'][0]['Age'] = int(request.values.get('age'))
     except ValueError:

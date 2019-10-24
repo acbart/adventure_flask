@@ -31,15 +31,9 @@
 
     <div class="row">
         <div class="col-sm">
-            {% if world['met_corgi?'] %}
-            <p>You met the corgi!</p>
-            {% else %}
-            <p>Current Status: You have not yet met the corgi.</p>
-            {% endif %}
-
             {% if world['corgis'] %}
-            <p>Currently, you have the following corgis: {{ world['corgis'] }}</p>
-            <table class="table table-hover">
+            <p>Currently, you have the following corgis:</p>
+            <table class="table table-hover" style="width:25%">
                 <thead class="thead-dark">
                     <th>Name</th>
                     <th>Age</th>

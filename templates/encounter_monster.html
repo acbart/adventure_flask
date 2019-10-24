@@ -7,22 +7,50 @@
 {% block body %}
 
     <!-- Curly braces let us inject values into the string -->
-    You are in {{ world['location'] }}. You found a monster!<br>
+    <p>You are in the {{ world['location'] }}. You found a monster!</p>
 
     <!-- Image taken from site that generates random Corgi pictures-->
-    <img src="http://placecorgi.com/260/180" /><br>
+    <p><img src="http://placecorgi.com/260/180" class="rounded border border-dark" /></p>
 
+{% endblock %}
+
+{% block controls %}
 
     <form action="/save/">
-        What is its name? <input type="text" name="monster_name"/><br>
-        Is it fluffy? <input type="checkbox" name="is_fluffy" value="true"><br>
-        Age? <input type="text" name="age"/><br>
-        What is its mood? <select name="monster_mood">
-            <option>Sleepy</option>
-            <option>Hungry</option>
-            <option>Fetch</option>
-        </select><br>
-        <input type="submit" value="Name the corgi" /><br>
+
+        <div class="form-group row">
+            <label for="monster_name" class="col-sm-2 col-form-label">What is its name?</label>
+            <div class="col-sm-3">
+                <input type="text" id="monster_name" name="monster_name" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="age" class="col-sm-2 col-form-label">How old is it?</label>
+            <div class="col-sm-3">
+                <input type="text" id="age" name="age" class="form-control"/><br>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="monster_mood" class="col-sm-2 col-form-label">What is its mood?</label>
+            <div class="col-sm-3">
+                <select name="monster_mood" id="monster_mood" class="custom-select">
+                    <option>Sleepy</option>
+                    <option>Hungry</option>
+                    <option>Fetch</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" name="is_fluffy" id="is_fluffy" value="true" class="form-check-input">
+            <label for="is_fluffy" class="form-check-label">Is it fluffy?</label>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Name the corgi" class="btn btn-primary"/><br>
+        </div>
     </form>
 
 {% endblock %}

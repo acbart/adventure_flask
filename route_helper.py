@@ -15,8 +15,7 @@ from app import app
 
 INITIAL_WORLD = {
     'corgis': [],
-    'location': 'Nowhere',
-    'met_corgi?': False
+    'location': 'Nowhere'
 }
 
 
